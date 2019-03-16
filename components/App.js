@@ -2,20 +2,11 @@
 import React, {PureComponent} from 'react'
 import {AppRegistry, StyleSheet, View} from 'react-native'
 import ApolloClient from 'apollo-boost'
+import {Navigation} from 'react-native-navigation'
+import StartContainer from './StartContainer'
+const getRoutes = require('../libs/RouteRepo').default
 
 const client = new ApolloClient()
-type Props = {}
-export default class App extends PureComponent<Props> {
-  render (): * {
-    return <View style={styles.container} />
-  }
-}
-
-AppRegistry.registerComponent('bolis', () => App)
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'red'
-  }
-})
+let routes = getRoutes()
+// Object.keys(routes).map((key) => Navigation.registerComponent(key, () => routes[key]))
+Navigation.registerComponent('StartContainer', () => StartContainer)
