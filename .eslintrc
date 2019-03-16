@@ -1,0 +1,127 @@
+{
+  "extends": [
+    "standard-flow",
+    "standard",
+    "standard-react"
+  ],
+  "parser": "babel-eslint",
+  "env": {
+    "es6": true,
+    "jasmine": true,
+    "jest/globals": true
+  },
+  "plugins": [
+    "react",
+    "react-native",
+    "flowtype",
+    "jest",
+    "header",
+    "eslint-plugin-local-rules"
+  ],
+    "rules": {
+      "import/no-named-default": 0,
+      "react/jsx-no-literals": 2,
+      "curly": [1, "multi"],
+      "react-native/no-color-literals": 1,
+      "react/prop-types": [0, {"skipUndeclared": true}],
+      "react-native/no-unused-styles": 1,
+      "header/header": [2, "line", [" @flow"]],
+      "react/no-multi-comp": [1, {"ignoreStateless": true}],
+      "flowtype/require-return-type": [2, "always",{"excludeArrowFunctions": true}],
+      "flowtype/no-weak-types": [1, {"any": true, "Object": false, "Function": false}],
+      "no-console": 2,
+      "consistent-return": 2,
+      "standard/computed-property-even-spacing": 0,
+      "no-unused-vars": 1,
+      "no-return-assign": 0,
+      "react/no-unused-prop-types": 0,
+      "max-len": ["warn", 350],
+      "semi": ["error", "never"],
+      "import/first": 0,
+      "indent": 1,
+      "space-infix-ops": 1,
+      "no-multi-spaces": 1,
+      "spaced-comment": 1,
+      "camelcase": 1,
+      "no-self-compare": 1,
+      "import/no-webpack-loader-syntax": 0,
+      "computed-property-spacing": ["error", "never"],
+      "object-curly-spacing": ["error", "never"],
+      "flowtype/space-after-type-colon": [1, "always"],
+      "flowtype/space-before-type-colon": [1, "never"],
+      "react/jsx-no-bind": [1, {
+        "ignoreRefs": false,
+        "allowArrowFunctions": false,
+        "allowBind": false
+      }],
+      "react/sort-comp": [1, {
+        order: [
+          '_panResponder',
+          'onRepeatAnimation',
+          'onEndAnimation',
+          'WebView',
+          'distant',
+          'swiper',
+          'countryCodes',
+          'languageCodes',
+          '_value',
+          'type-annotations',
+          'state',
+          'defaultProps',
+          'statics',
+          'SmoothLine',
+          'Pie',
+          'currencyInfos',
+          'variable',
+          'lifecycle',
+          'componentDidMountOrUpdate',
+          'rendering',
+          'everything-else'
+        ],
+        groups: {
+          statics: [
+            'statics',
+            'static-methods',
+          ],
+          rendering: [
+          'render',
+          '/^render.+$/'
+          ]
+        }
+      }]
+    },
+
+  # Map from global var to bool specifying if it can be redefined
+  "globals": {
+    "ErrorUtils" : false,
+    "React" : true,
+    "__DEV__": true,
+    "__dirname": false,
+    "__fbBatchedBridgeConfig": false,
+    "cancelAnimationFrame": false,
+    "clearImmediate": true,
+    "clearInterval": false,
+    "clearTimeout": false,
+    "console": false,
+    "document": false,
+    "escape": false,
+    "exports": false,
+    "fetch": false,
+    "global": false,
+    "jest": false,
+    "Map": true,
+    "module": false,
+    "navigator": false,
+    "process": false,
+    "Promise": true,
+    "requestAnimationFrame": true,
+    "require": false,
+    "Set": true,
+    "setImmediate": true,
+    "setInterval": false,
+    "setTimeout": false,
+    "window": false,
+    "XMLHttpRequest": false,
+    "pit": false
+  }
+}
