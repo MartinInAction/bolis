@@ -15,8 +15,7 @@
     "react-native",
     "flowtype",
     "jest",
-    "header",
-    "eslint-plugin-local-rules"
+    "header"
   ],
     "rules": {
       "import/no-named-default": 0,
@@ -55,43 +54,41 @@
         "allowBind": false
       }],
       "react/sort-comp": [1, {
-        order: [
-          '_panResponder',
-          'onRepeatAnimation',
-          'onEndAnimation',
-          'WebView',
-          'distant',
-          'swiper',
-          'countryCodes',
-          'languageCodes',
-          '_value',
-          'type-annotations',
-          'state',
-          'defaultProps',
-          'statics',
-          'SmoothLine',
-          'Pie',
-          'currencyInfos',
-          'variable',
-          'lifecycle',
-          'componentDidMountOrUpdate',
-          'rendering',
-          'everything-else'
+        "order": [
+          "_panResponder",
+          "onRepeatAnimation",
+          "onEndAnimation",
+          "WebView",
+          "distant",
+          "swiper",
+          "countryCodes",
+          "languageCodes",
+          "_value",
+          "type-annotations",
+          "state",
+          "defaultProps",
+          "statics",
+          "SmoothLine",
+          "Pie",
+          "currencyInfos",
+          "variable",
+          "lifecycle",
+          "componentDidMountOrUpdate",
+          "rendering",
+          "everything-else"
         ],
-        groups: {
-          statics: [
-            'statics',
-            'static-methods',
+        "groups": {
+          "statics": [
+            "statics",
+            "static-methods"
           ],
-          rendering: [
-          'render',
-          '/^render.+$/'
+          "rendering": [
+          "render",
+          "/^render.+$/"
           ]
         }
       }]
     },
-
-  # Map from global var to bool specifying if it can be redefined
   "globals": {
     "ErrorUtils" : false,
     "React" : true,
