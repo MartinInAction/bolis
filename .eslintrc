@@ -19,7 +19,7 @@
   ],
     "rules": {
       "import/no-named-default": 0,
-      "react/jsx-no-literals": 2,
+      "react/jsx-no-literals": 0,
       "curly": [1, "multi"],
       "react-native/no-color-literals": 1,
       "react/prop-types": [0, {"skipUndeclared": true}],

@@ -1,0 +1,3 @@
+targets:
+  bolis: shared-eu-west-1/cjtbmke0i2o7p0199g3gymsej
+  default: bolis

@@ -30,7 +30,9 @@
     "react-apollo": "^2.5.2",
     "react-native": "0.59.1",
     "react-native-navigation": "^2.13.1",
-    "react-redux": "^6.0.1"
+    "react-native-swiper": "^1.5.14",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
