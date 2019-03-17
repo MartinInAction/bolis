@@ -5,14 +5,15 @@ import colors from '../libs/Colors'
 import {load} from '../libs/Storage'
 import {goToDefaultRoute} from '../libs/AppNavigation'
 type Props = {}
-export default class SignedInManager extends PureComponent<Props> {
+export default class AppManager extends PureComponent<Props> {
     static routeName = 'SignedInManager'
     static topBar = {
       visible: true
     }
 
     componentDidMount () {
-      load().then((state) => goToDefaultRoute(state))
+      load()
+        .then((state) => goToDefaultRoute(state))
     }
     render (): * {
       // TODO LOADING

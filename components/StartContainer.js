@@ -1,7 +1,8 @@
 
 // @flow
-import {ActivityIndicator, TouchableOpacity, TextInput, Image, StyleSheet, View, ScrollView, Text, KeyboardAvoidingView} from 'react-native'
+import {ActivityIndicator, TextInput, Image, StyleSheet, View, ScrollView, Text, KeyboardAvoidingView} from 'react-native'
 import React, {PureComponent} from 'react'
+import Button from './Button'
 import commonStyles from '../libs/CommonStyles'
 import Swiper from 'react-native-swiper'
 import {graphql} from 'react-apollo'
@@ -31,32 +32,30 @@ export class StartContainer extends PureComponent<Props, State> {
         <Image source={require('../assets/images/mt.jpg')} style={styles.background} />
         <Swiper loop={false} showsPagination={false} showsButtons={false}>
           <View style={styles.slide}>
+            <Text style={styles.helpText}>LOGIN</Text>
             <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={0} style={styles.container} contentContainerStyle={styles.scrollContainer}>
               <ScrollView style={{flexGrow: 1}} contentContainerStyle={styles.scrollContainer} scrollEnabled={false}>
                 <View style={styles.formWrapper}>
-                  <TextInput autoCapitalize='none' keyboardType='email-address' spellCheck={false} onChangeText={(email) => this.setState({email})} style={styles.input} placeholder='email' placeholderTextColor={'white'} />
-                  <TextInput autoCapitalize='none' secureTextEntry spellCheck={false} onChangeText={(password) => this.setState({password})} style={styles.input} placeholder='password' placeholderTextColor={'white'} />
+                  <TextInput autoCapitalize='none' keyboardType='email-address' spellCheck={false} onChangeText={(email) => this.setState({email})} style={styles.input} placeholder='Email' placeholderTextColor={'white'} />
+                  <TextInput autoCapitalize='none' secureTextEntry spellCheck={false} onChangeText={(password) => this.setState({password})} style={styles.input} placeholder='Password' placeholderTextColor={'white'} />
                 </View>
               </ScrollView>
-              <Text style={styles.helpText}>LOGIN</Text>
-              <TouchableOpacity activeOpacity={0.9} onPress={() => this.signIn()} style={styles.button}>
-                {isSending ? <ActivityIndicator color='white' size='small' /> : <Text style={styles.buttonText}>LOGGA IN</Text>}
-              </TouchableOpacity>
+              <Text style={styles.helpTextSwope}>{'SWOPE TO REGISTER =>'}</Text>
+              <Button showSpinner={isSending} onPress={() => this.signIn()} text='SIGN IN' style={styles.button} />
             </KeyboardAvoidingView>
           </View>
           <View style={styles.slide}>
             <KeyboardAvoidingView behavior='padding' keyboardVerticalOffset={0} style={styles.container} contentContainerStyle={styles.scrollContainer}>
+              <Text style={styles.helpText}>REGISTGER</Text>
               <ScrollView style={{flexGrow: 1}} contentContainerStyle={styles.scrollContainer} scrollEnabled={false}>
                 <View style={styles.formWrapper}>
-                  <TextInput autoCapitalize='none' spellCheck={false} onChangeText={(name) => this.setState({name})} style={styles.input} placeholder='name' placeholderTextColor={'white'} />
-                  <TextInput autoCapitalize='none' keyboardType='email-address' spellCheck={false} onChangeText={(email) => this.setState({email})} style={styles.input} placeholder='email' placeholderTextColor={'white'} />
-                  <TextInput autoCapitalize='none' secureTextEntry spellCheck={false} onChangeText={(password) => this.setState({password})} style={styles.input} placeholder='password' placeholderTextColor={'white'} />
+                  <TextInput autoCapitalize='none' spellCheck={false} onChangeText={(name) => this.setState({name})} style={styles.input} placeholder='Name' placeholderTextColor={'white'} />
+                  <TextInput autoCapitalize='none' keyboardType='email-address' spellCheck={false} onChangeText={(email) => this.setState({email})} style={styles.input} placeholder='Email' placeholderTextColor={'white'} />
+                  <TextInput autoCapitalize='none' secureTextEntry spellCheck={false} onChangeText={(password) => this.setState({password})} style={styles.input} placeholder='Password' placeholderTextColor={'white'} />
                 </View>
               </ScrollView>
-              <Text style={styles.helpText}>REGISTGER</Text>
-              <TouchableOpacity activeOpacity={0.9} onPress={() => this.signUp()} style={styles.button}>
-                {isSending ? <ActivityIndicator color='white' size='small' /> : <Text style={styles.buttonText}>SKAPA KONTO</Text>}
-              </TouchableOpacity>
+              <Text style={styles.helpTextSwope}>{'<= SWOPE TO LOGIN'}</Text>
+              <Button showSpinner={isSending} onPress={() => this.signUp()} text='REGISTER' style={styles.button} />
             </KeyboardAvoidingView>
           </View>
         </Swiper>
@@ -70,18 +69,18 @@ export class StartContainer extends PureComponent<Props, State> {
       this.setState({isSending: true})
       signinUserMutation({variables: {email, password}})
         .then((res, des) => {
-          var user = {}
-          user.token = res.data.signinUser.token
-          user.id = res.data.signinUser.user.id
-          this.setState({isSending: false})
+          let user = {
+            token: res.data.signinUser.token,
+            id: res.data.signinUser.user.id
+          }
           login(user)
-          save()
+          save(user)
         })
         .catch((err) => {
-          this.setState({isSending: false})
           // eslint-disable-next-line
-                console.log(err)
+          console.log(err)
         })
+        .finally(() => this.setState({isSending: false}))
     }
 
     signUp () {
@@ -131,7 +130,7 @@ const CREATE_USER_MUTATION = gql`
     signinUser(email: {
       email: $email,
       password: $password
-    }) {token user {id}
+    }) {token user {id, name}
     }
   }
 `
@@ -150,11 +149,22 @@ var styles = StyleSheet.create({
     backgroundColor: colors.transparent
   },
   helpText: {
+    top: 60,
+    alignSelf: 'center',
+    padding: 10,
+    backgroundColor: colors.blackOp7,
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: colors.white,
+    textAlign: 'center',
+    borderRadius: 2
+  },
+  helpTextSwope: {
     position: 'absolute',
     bottom: commonStyles.buttonHeight * 2,
     alignSelf: 'center',
     padding: 10,
-    backgroundColor: colors.black,
+    backgroundColor: colors.blackOp7,
     fontSize: 15,
     fontWeight: 'bold',
     color: colors.white,
@@ -169,7 +179,7 @@ var styles = StyleSheet.create({
     flex: 0.5
   },
   input: {
-    backgroundColor: colors.black,
+    backgroundColor: colors.blackOp7,
     alignSelf: 'center',
     width: '80%',
     marginBottom: 20,
@@ -177,19 +187,9 @@ var styles = StyleSheet.create({
     fontSize: 20,
     color: colors.white,
     paddingLeft: 10,
-    borderColor: colors.black,
+    borderColor: colors.blackOp7,
     borderWidth: 1,
     borderRadius: 2
-  },
-  button: {
-    height: commonStyles.buttonHeight,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.imperial
-  },
-  buttonText: {
-    fontSize: 20,
-    color: colors.white
   },
   background: {
     height: '100%',

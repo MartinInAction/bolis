@@ -18,6 +18,7 @@ export default class ContactsContainer extends PureComponent<Props> {
 
     doSomething = () => { }
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,

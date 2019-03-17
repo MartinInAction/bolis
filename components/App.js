@@ -5,7 +5,6 @@ import ApolloClient from 'apollo-boost'
 import {ApolloProvider} from 'react-apollo'
 import {Navigation} from 'react-native-navigation'
 import {setComponentId} from '../libs/AppNavigation'
-
 const getRoutes = require('../libs/RouteRepo').default
 
 const localClient = new ApolloClient({
@@ -43,7 +42,7 @@ Navigation.events().registerAppLaunchedListener(() => {
         children: [
           {
             component: {
-              name: 'SignedInManager'
+              name: 'AppManager'
             }
           }
         ],

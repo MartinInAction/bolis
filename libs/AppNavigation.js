@@ -2,13 +2,20 @@
 import {Navigation} from 'react-native-navigation'
 import {getTopBarOptions} from './NavigationHelper'
 import StartContainer from '../components/StartContainer'
-import ContactsContainer from '../components/ContactsContainer'
+import {save} from '../libs/Storage'
+import HomeContainer from '../components/HomeContainer'
 let componentId
 
 export let login = (user: Object) => {
   return goToDefaultRoute(user)
 }
-export let goToDefaultRoute = (user: Object) => {
+
+export let logout = () => {
+  save()
+  goToDefaultRoute()
+}
+
+export let goToDefaultRoute = (user?: Object) => {
   if (!user) return Navigation.setStackRoot(componentId, [{
     component: {
       name: StartContainer.routeName,
@@ -26,10 +33,10 @@ export let goToDefaultRoute = (user: Object) => {
   ])
   return Navigation.setStackRoot(componentId, [{
     component: {
-      name: ContactsContainer.routeName,
+      name: HomeContainer.routeName,
       passProps: {},
       options: {
-        topBar: StartContainer.topBar,
+        topBar: HomeContainer.topBar,
         animations: {
           setStackRoot: {
             enabled: false

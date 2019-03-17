@@ -49,7 +49,7 @@ export default class ButtonWrapper extends PureComponent<Props, State> {
     }
 
     preventDoubleClick (event: Object) {
-      var {onPress, enableDoubleClick, onPressIn, analyticsKey} = this.props
+      var {onPress, enableDoubleClick, onPressIn} = this.props
       let {isClicked} = this.state
       if (isClicked) return
       // if (vibrate) VibrationHelper.vibrate()
