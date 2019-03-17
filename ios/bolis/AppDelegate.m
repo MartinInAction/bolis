@@ -3,7 +3,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-#import <React/RCTLinkingManager.h>
+// #import <React/RCTLinkingManager.h>
 #import "Firebase.h"
 #import <React/RCTPushNotificationManager.h>
 #import <RNFirebaseMessaging.h>
@@ -48,12 +48,13 @@
 }
 
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+/* - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
 sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
   return [RCTLinkingManager application:application openURL:url
                       sourceApplication:sourceApplication annotation:annotation];
 }
+ */
 
 - (void)messaging:(FIRMessaging *)messaging didReceiveRegistrationToken:(NSString *)fcmToken {
   NSLog(@"FCM registration token: %@", fcmToken);
